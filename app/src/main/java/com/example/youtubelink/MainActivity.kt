@@ -20,12 +20,13 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
+
             var isShowAlertDialog by remember {
                 mutableStateOf(true)
             }
-            if (isShowAlertDialog){
-                CustomDialogScreen(onDismissRequest = {isShowAlertDialog=false}, onConfirmationRequest = {})
 
+            if (isShowAlertDialog) {
+                CustomDialogScreen(sponsorlink = "https://www.burgerking.in/", onDismissRequest = {isShowAlertDialog=false}, onConfirmationRequest = { })
             }
 
         }

@@ -3,6 +3,7 @@ package com.example.youtubelink
 import android.content.Intent
 import android.net.Uri
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
@@ -18,12 +19,17 @@ import androidx.compose.ui.unit.dp
 
 
 @Composable
-fun OpenURLButton() {
-    val ytb = "https://www.burgerking.in/"
+fun OpenURLButton(yt: String) {
     val context = LocalContext.current
-    val yintent = remember {Intent(Intent.ACTION_VIEW, Uri.parse(ytb))}
+    val yintent = remember {Intent(Intent.ACTION_VIEW, Uri.parse(yt))}
 
 
-    Button(onClick = {context.startActivity((yintent))}, modifier = Modifier.width(256.dp).height(48.dp),shape = RoundedCornerShape(8.dp), colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFCC2936))) {
-        Text(text = "Visit Us", modifier = Modifier, color = Color(0xFFF1F2EB))    }
+    Button(onClick = {context.startActivity((yintent))}, modifier = Modifier
+        .width(280.dp)
+        .height(48.dp),
+        shape = RoundedCornerShape(8.dp),
+        colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFCC2936)))
+    {
+        Text(text = "Visit Us", modifier = Modifier, color = Color(0xFFF1F2EB))
+    }
 }

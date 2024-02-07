@@ -9,6 +9,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -43,14 +44,14 @@ import androidx.compose.ui.window.Dialog
 
 @Composable
 fun CustomDialogScreen(
+    sponsorlink: String,
     modifier: Modifier = Modifier,
     onDismissRequest: () -> Unit,
     onConfirmationRequest: () -> Unit
-){
+) {
     val context = LocalContext.current
-    val yintent = remember { Intent(Intent.ACTION_VIEW, Uri.parse("https://www.burgerking.in/"))}
-    val videoUri =
-        Uri.parse("android.resource://com.example.youtubelink/raw/video")
+    val yintent = remember { Intent(Intent.ACTION_VIEW, Uri.parse(sponsorlink))}
+    val videoUri = Uri.parse("android.resource://com.example.youtubelink/raw/video")
 
 
     Dialog(onDismissRequest = {  }) {
@@ -60,43 +61,72 @@ fun CustomDialogScreen(
             .clip(RoundedCornerShape(25.dp)),
             colors = CardDefaults.cardColors(containerColor = Color(0xFF11151C))) {
 
-            IconButton(onClick = { onDismissRequest()}) {
-                Icon(imageVector = Icons.Filled.Close , contentDescription = "Close", tint = Color(0xFFCC2936))
+            IconButton(onClick = { onDismissRequest()})
+            {
+                Icon(imageVector = Icons.Filled.Close ,
+                    contentDescription = "Close",
+                    tint = Color(0xFFCC2936))
             }
 
-            Column(modifier = Modifier.fillMaxSize(), verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
+            Column(modifier = Modifier
+                .fillMaxSize(),
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally)
+            {
 
-//                Text(text = "KIIT Fest Proudly Presents ",color = Color(0xFFF1F2EB), modifier = Modifier.padding(vertical = 48.dp), fontSize = 20.sp)
+//                Text(text = "KIIT Fest Proudly Presents ",
+//                    color = Color(0xFFF1F2EB),
+//                    modifier = Modifier
+//                        .padding(vertical = 48.dp),
+//                    fontSize = 20.sp
+//                )
 
 
-//                Image(painter = painterResource(id = R.drawable.sponsor), modifier = Modifier
-//                    .padding(12.dp)
-//                    .clip(RoundedCornerShape(20.dp))
-//                    .clickable { context.startActivity((yintent)) },
-//                    contentScale = ContentScale.FillHeight,
-//                    contentDescription = "Image")
-//
-//                YouTubePlayer(youtubeVideoId = "xwH4oVnuIAs", lifecycleOwner = LocalLifecycleOwner.current)
+
+//                SponsorImage(sponsorlink = "https://www.burgerking.in/")
+
+
+//                YouTubePlayer(youtubeVideoId = "xwH4oVnuIAs",
+//                    lifecycleOwner = LocalLifecycleOwner.current
+//                )
 
                 VideoPlayer(videoUri = videoUri)
 
-                Text(text = "As its Title Sponsor", color = Color(0xFFF1F2EB), modifier = Modifier
-                    .padding(vertical = 48.dp), fontSize = 20.sp)
+//                Text(text = "As its Title Sponsor",
+//                    color = Color(0xFFF1F2EB),
+//                    modifier = Modifier
+//                    .padding(vertical = 48.dp),
+//                    fontSize = 20.sp
+//                )
 
-                OpenURLButton()
-                }
+//                OpenURLButton("https://www.burgerking.in/")
+            }
         }
 
     }
 
 }
 
+@Composable
+fun SponsorImage(sponsorlink: String, modifier: Modifier = Modifier){
+    val context = LocalContext.current
+    val yintent = remember { Intent(Intent.ACTION_VIEW, Uri.parse(sponsorlink))}
+    Image(painter = painterResource(id = R.drawable.sponsor),
+        modifier = Modifier
+            .padding(12.dp)
+            .clip(RoundedCornerShape(20.dp))
+            .clickable { context.startActivity((yintent)) },
+        contentScale = ContentScale.Fit,
+        contentDescription = "Image"
+    )
+}
 
 //@Composable
-//fun Test(){
-//    CustomDialogScreen(
-//        modifier = Modifier.fillMaxSize(0.5f),
-//        onDismissRequest = { /*TODO*/ }) {
-//
+//fun CloseButton(onDismissRequest: () -> Unit, ){
+//    IconButton(onClick = { onDismissRequest()})
+//    {
+//        Icon(imageVector = Icons.Filled.Close ,
+//            contentDescription = "Close",
+//            tint = Color(0xFFCC2936))
 //    }
 //}

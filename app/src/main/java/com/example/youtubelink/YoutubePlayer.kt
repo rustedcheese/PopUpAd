@@ -23,14 +23,14 @@ fun YouTubePlayer(
         modifier = Modifier
             .padding(8.dp)
             .clip(RoundedCornerShape(8.dp)),
+
         factory = { context ->
         YouTubePlayerView(context = context).apply {
             lifecycleOwner.lifecycle.addObserver(this)
 
             addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
                 override fun onReady(youTubePlayer: YouTubePlayer) {
-                    youTubePlayer.loadVideo(youtubeVideoId, 0f)
-                }
+                    youTubePlayer.loadVideo(youtubeVideoId, 0f) }
             })
         }
     })
