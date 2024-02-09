@@ -11,6 +11,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
@@ -25,6 +27,7 @@ fun VideoPlayer(videoUri: Uri) {
             .fillMaxWidth()
             .padding(8.dp)
             .clip(RoundedCornerShape(16.dp)),
+
         factory = { context ->
             VideoView(context).apply {
                 setVideoURI(videoUri)
@@ -42,17 +45,18 @@ fun VideoPlayer(videoUri: Uri) {
 
 
         })
-    if (isVideoFinished.value) {
+//    if (isVideoFinished.value) {
         // Container to control visibility of the OpenURLButton
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(8.dp)
+                .padding(8.dp),
+            contentAlignment = Alignment.Center
         ) {
             // Calling Button Composable
-            OpenURLButton("https://www.burgerking.in/")
+            OpenURLButton("https://www.burgerking.in/", isEnabled = isVideoFinished.value)
         }
-    }
+//    }
 
 
 }

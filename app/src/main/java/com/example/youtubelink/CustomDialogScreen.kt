@@ -3,6 +3,7 @@ package com.example.youtubelink
 
 import android.content.Intent
 import android.net.Uri
+import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -108,10 +109,10 @@ fun CustomDialogScreen(
 }
 
 @Composable
-fun SponsorImage(sponsorlink: String, modifier: Modifier = Modifier){
+fun SponsorImage(sponsorlink: String, modifier: Modifier = Modifier, @DrawableRes image: Int){
     val context = LocalContext.current
     val yintent = remember { Intent(Intent.ACTION_VIEW, Uri.parse(sponsorlink))}
-    Image(painter = painterResource(id = R.drawable.sponsor),
+    Image(painter = painterResource(id = image),
         modifier = Modifier
             .padding(12.dp)
             .clip(RoundedCornerShape(20.dp))
